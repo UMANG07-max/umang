@@ -1,1 +1,615 @@
-<p>umang rajcl</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umang Raj — Future IIT Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060810;
+    --surface: #0d1120;
+    --card: #111827;
+    --accent: #00f5d4;
+    --accent2: #ff6b35;
+    --accent3: #a855f7;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --border: rgba(0,245,212,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,212,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,212,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glowing orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; animation: drift 8s ease-in-out infinite alternate; }
+  .orb2 { width: 400px; height: 400px; background: var(--accent3); bottom: 20%; left: -100px; animation: drift 10s ease-in-out infinite alternate-reverse; }
+  .orb3 { width: 300px; height: 300px; background: var(--accent2); bottom: -50px; right: 20%; animation: drift 7s ease-in-out infinite alternate; }
+
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
+
+  /* NAVBAR */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(6,8,16,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    letter-spacing: 3px;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 3rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span.teal { color: var(--accent); }
+  .hero h1 span.orange { color: var(--accent2); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 3rem;
+  }
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .badge-teal  { border-color: var(--accent);  color: var(--accent);  background: rgba(0,245,212,0.06); }
+  .badge-orange{ border-color: var(--accent2); color: var(--accent2); background: rgba(255,107,53,0.06); }
+  .badge-purple{ border-color: var(--accent3); color: var(--accent3); background: rgba(168,85,247,0.06); }
+
+  .cta-row { display: flex; gap: 1rem; }
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
+  .btn-primary:hover { background: #00ddb9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,245,212,0.3); }
+  .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn-outline:hover { background: rgba(0,245,212,0.08); }
+
+  /* ABOUT PARAGRAPH */
+  .section {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+  }
+  .about-para {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #b0b8cc;
+    grid-column: 1 / -1;
+    padding: 2.5rem;
+    border-left: 3px solid var(--accent);
+    background: var(--card);
+    border-radius: 0 8px 8px 0;
+  }
+  .about-para strong { color: var(--accent); font-weight: 600; }
+
+  /* ADDRESS CARD */
+  .address-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .address-card::before {
+    content: 'ADDRESS';
+    position: absolute; top: 1rem; right: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 3px;
+    color: var(--muted); opacity: 0.5;
+  }
+  .address-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; letter-spacing: 2px;
+    color: var(--accent); margin-bottom: 1.2rem;
+  }
+  .address-line {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: #b0b8cc;
+    line-height: 1.5;
+  }
+  .address-line .icon { color: var(--accent2); flex-shrink: 0; margin-top: 2px; }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+  .stat-box {
+    background: var(--card);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* SKILLS / INTERESTS */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .interest-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .interest-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .interest-card .ic-icon {
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+  .interest-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 2px;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .interest-card p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; color: var(--muted); line-height: 1.6;
+  }
+  .interest-card .glow-line {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .interest-card:hover .glow-line { transform: scaleX(1); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item {
+    position: relative; margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 10px var(--accent);
+  }
+  .tl-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 3px;
+    color: var(--accent2); margin-bottom: 0.3rem;
+  }
+  .tl-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--text); margin-bottom: 0.3rem;
+  }
+  .tl-desc {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; color: var(--muted); line-height: 1.6;
+  }
+
+  /* SPORTS */
+  .sports-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  .sport-pill {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+  .sport-pill:hover { border-color: var(--accent2); color: var(--accent2); transform: scale(1.05); }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem; color: var(--muted);
+  }
+  footer span { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media(max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 1.5rem 3rem; }
+    .section { padding: 4rem 1.5rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2,1fr); }
+    .about-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">UR</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#journey">Journey</a>
+    <a href="#sports">Sports</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Class 9 · Allen Career Institute · IIT JEE 2030</div>
+  <h1>
+    <span class="teal">UMANG</span><br>
+    <span class="orange">RAJ</span>
+  </h1>
+  <p class="hero-sub">
+    A passionate Class 9 student from Sitamarhi, Bihar — currently training at Allen Career Institute, Kota. 
+    Driven by code, circuits, and the dream of cracking IIT JEE 2030.
+  </p>
+  <div class="hero-badges">
+    <span class="badge badge-teal">Web Developer</span>
+    <span class="badge badge-orange">AI Enthusiast</span>
+    <span class="badge badge-purple">Future IITian</span>
+    <span class="badge badge-teal">Programmer</span>
+    <span class="badge badge-orange">Badminton Player</span>
+    <span class="badge badge-purple">Chess Thinker</span>
+  </div>
+  <div class="cta-row">
+    <a href="#about" class="btn btn-primary">Know Me Better</a>
+    <a href="#contact" class="btn btn-outline">My Address</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="section" style="padding-bottom: 0;">
+  <div class="stats-row reveal">
+    <div class="stat-box">
+      <span class="stat-num">9</span>
+      <div class="stat-label">Current Class</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">2030</span>
+      <div class="stat-label">IIT JEE Target</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">3+</span>
+      <div class="stat-label">Tech Hobbies</div>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">∞</span>
+      <div class="stat-label">Ambition Level</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">ABOUT ME</div>
+
+  <div class="about-grid">
+    <div class="about-para reveal">
+      My name is <strong>Umang Raj</strong>, and I was born in <strong>Parihar</strong>, a town in the Sitamarhi district of Bihar, India. I hail from the humble locality of <strong>Sirsiya Bazar, Sitamarhi</strong>, a place that shaped my roots and instilled in me a deep sense of determination and ambition. Today, I am a proud student of <strong>Class 9 – Nurture Batch</strong> at <strong>Allen Career Institute, Kota, Rajasthan</strong>, one of India's most prestigious coaching institutes for engineering aspirants. I study at the renowned <strong>Sammunnat Building</strong>, where I am rigorously preparing for the <strong>IIT JEE 2030</strong> examination — the gateway to India's most elite engineering institutions. Currently residing in the vibrant student hub of <strong>Talwandi, Kota (PIN: 340023)</strong>, I wake up every day driven by a singular goal: to earn my seat at an IIT. Beyond academics, I am deeply passionate about <strong>programming, web development, and Artificial Intelligence</strong> — three fields that I believe will define the future of humanity. I spend my free hours writing code, building websites, and exploring how AI models work. When I'm not studying or coding, you'll find me on a <strong>badminton court or football field</strong>, or sitting quietly across a chessboard plotting my next move, or rolling the dice in a spirited game of <strong>Ludo</strong> with friends. I am a young dreamer with big plans — and I'm just getting started.
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section class="section" id="interests">
+  <div class="section-label">What I Love</div>
+  <div class="section-title">MY INTERESTS</div>
+  <div class="cards-grid">
+    <div class="interest-card reveal">
+      <div class="ic-icon">💻</div>
+      <h4>Programming</h4>
+      <p>Writing logic, solving problems with code. Programming is my superpower in development.</p>
+      <div class="glow-line"></div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="ic-icon">🌐</div>
+      <h4>Web Development</h4>
+      <p>Building websites from scratch — HTML, CSS, JS and beyond. The web is my canvas.</p>
+      <div class="glow-line"></div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="ic-icon">🤖</div>
+      <h4>Artificial Intelligence</h4>
+      <p>Fascinated by how machines learn. Exploring AI concepts alongside my JEE prep.</p>
+      <div class="glow-line"></div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="ic-icon">🏸</div>
+      <h4>Badminton</h4>
+      <p>Speed, agility, precision — badminton teaches me to be quick both on and off court.</p>
+      <div class="glow-line"></div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="ic-icon">⚽</div>
+      <h4>Football</h4>
+      <p>Teamwork, strategy and endurance. Football keeps me fit and mentally sharp.</p>
+      <div class="glow-line"></div>
+    </div>
+    <div class="interest-card reveal">
+      <div class="ic-icon">♟️</div>
+      <h4>Chess & Ludo</h4>
+      <p>Indoor games that sharpen strategic thinking — perfect for a future engineer's mind.</p>
+      <div class="glow-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section class="section" id="journey">
+  <div class="section-label">My Path</div>
+  <div class="section-title">MY JOURNEY</div>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-year">ORIGIN</div>
+      <div class="tl-title">Born in Parihar, Sitamarhi</div>
+      <div class="tl-desc">Roots in Parihar village. Grew up in Sirsiya Bazar, Sitamarhi, Bihar — where the journey began.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">EARLY YEARS</div>
+      <div class="tl-title">Discovered Programming & Web Dev</div>
+      <div class="tl-desc">Fell in love with coding and web development. Started exploring HTML, CSS, and logic-building.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">NOW — CLASS 9</div>
+      <div class="tl-title">Allen Career Institute, Kota</div>
+      <div class="tl-desc">Enrolled in the Nurture Batch at Allen's Sammunnat Building, Kota, Rajasthan. Serious JEE prep begins.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">GOAL — 2030</div>
+      <div class="tl-title">IIT JEE — Advanced</div>
+      <div class="tl-desc">Target: Crack IIT JEE 2030. Dream of studying Computer Science or Electronics at a top IIT.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">FUTURE</div>
+      <div class="tl-title">Engineer · Developer · Innovator</div>
+      <div class="tl-desc">Build AI-powered products. Contribute to India's tech future. Leave a mark on the world.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPORTS -->
+<section class="section" id="sports" style="padding-top: 0;">
+  <div class="section-label">Active Life</div>
+  <div class="section-title">SPORTS I PLAY</div>
+  <div class="sports-row reveal">
+    <div class="sport-pill">🏸 Badminton</div>
+    <div class="sport-pill">⚽ Football</div>
+    <div class="sport-pill">♟️ Chess</div>
+    <div class="sport-pill">🎲 Ludo</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ADDRESS / CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">Find Me</div>
+  <div class="section-title">ADDRESS</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="reveal">
+
+    <div class="address-card">
+      <h3>🏠 Home Address</h3>
+      <div class="address-line">
+        <span class="icon">📍</span>
+        <span>Sirsiya Bazar, Sitamarhi District, Bihar, India</span>
+      </div>
+      <div class="address-line">
+        <span class="icon">🏘️</span>
+        <span>Village: Parihar (Place of Birth)</span>
+      </div>
+      <div class="address-line">
+        <span class="icon">🗺️</span>
+        <span>State: Bihar, India</span>
+      </div>
+    </div>
+
+    <div class="address-card">
+      <h3>🎓 Current Study Address</h3>
+      <div class="address-line">
+        <span class="icon">📍</span>
+        <span>Talwandi, Kota, Rajasthan — 340023</span>
+      </div>
+      <div class="address-line">
+        <span class="icon">🏫</span>
+        <span>Allen Career Institute, Sammunnat Building, Kota</span>
+      </div>
+      <div class="address-line">
+        <span class="icon">📚</span>
+        <span>Batch: Nurture | Class: IX | Target: IIT JEE 2030</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 <span>Umang Raj</span>. Future IITian. All Rights Reserved.</div>
+  <div>Built with 💻 + ☕ | Talwandi, Kota · <span>340023</span></div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
